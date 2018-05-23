@@ -12,32 +12,11 @@ namespace SpaceXLaunchData.Controllers
 {
     public class HomeController : Controller
     {
-        private SpaceXLaunchDataDbContext _context;
-
-        public HomeController(SpaceXLaunchDataDbContext dbContext)
-        {
-            _context = dbContext;
-        }
-
 
         public IActionResult Index()
         {
 
-
-            LaunchDataLogic launchDataLogic = new LaunchDataLogic(_context);
-
-            launchDataLogic.UpdateLaunches();
-            _context.SaveChanges();
-
-            var launches = _context.Launches.OrderBy(l => l.LaunchDate).ToList();
-
-            LaunchesViewModel launchesViewModel = new LaunchesViewModel()
-            {
-                Launches = launches
-            };
-
-
-            return View(launchesViewModel);
+            return View();
         }
 
         public IActionResult Error()
